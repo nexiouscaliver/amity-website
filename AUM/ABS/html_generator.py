@@ -9,6 +9,8 @@ template = """
     <td><span style="font-size: 14px;">
         {author}</span></td>
     <td><span style="font-size: 14px;">
+        {book_title}</span></td>
+    <td><span style="font-size: 14px;">
         {year}</span></td>
     <td><span style="font-size: 14px;">
         {publisher}</span></td>
@@ -26,15 +28,15 @@ def csv_parser(csv_file):
         reader = csv.reader(file)
         for row in reader:
             print(row)
-            filled_template = template.format(title=row[1], author=row[0], year=row[2], publisher=row[3], issn=row[4])
+            filled_template = template.format(title=row[0], author=row[1], book_title=row[2], year=row[3], publisher=row[4], issn=row[5])
             print(filled_template)
             final_html.append(filled_template)
     return final_html
 
-csv_parser('ABS Books NEW.csv')
+csv_parser('ABSBooksChaptersNew.csv')
 print(final_html)
 
-with open('ABS Books NEW.html', 'w') as f:
+with open('ABSChaptersNew.html', 'w') as f:
     for i in final_html:
         f.write(i)
 print('HTML file generated successfully')
